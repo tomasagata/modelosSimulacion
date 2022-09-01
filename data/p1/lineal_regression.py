@@ -12,7 +12,22 @@ def read_and_show_head_with_columns(filename, columns_to_show):
 
 
 if __name__ == '__main__':
-    vars_explicativas = read_and_show_head_with_columns("boston.csv", ['CRIM', 'ZN', 'INDUS', 'CHAS', 'NOX', 'RM', 'AGE', 'DIS', 'RAD', 'TAX', 'PTRATIO', 'B', 'LSTAT'])
+    vars_explicativas = read_and_show_head_with_columns(
+        "boston.csv",
+        ['CRIM',
+         'ZN',
+         'INDUS',
+         'CHAS',
+         'NOX',
+         'RM',
+         'AGE',
+         'DIS',
+         'RAD',
+         'TAX',
+         'PTRATIO',
+         'B',
+         'LSTAT']
+    )
     var_objetiva = read_and_show_head_with_columns("boston.csv", 'MEDV')
 
     regr = linear_model.LinearRegression()
