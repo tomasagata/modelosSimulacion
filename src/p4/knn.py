@@ -35,7 +35,7 @@ def knnScore(model, X, y, threshold = 0.5):
     return hits/y_size
 
 if __name__ == '__main__':
-    df = pd.read_csv(r'C:\Users\tomas\Desktop\modelosSimulacion\data\Churn_Modelling.csv')
+    df = pd.read_csv(r'/Users/kpapiccio/PycharmProjects/modelosSimulacion/data/Churn_Modelling.csv')
     df = df.drop(['RowNumber','CustomerId','Surname'], axis=1)
     set_vars_expl = df.drop('Exited', axis=1)
     set_vars_expl = factorize(set_vars_expl, ['Gender', 'Geography'])
@@ -45,4 +45,3 @@ if __name__ == '__main__':
     
     for i in np.arange(0, 1, 0.1):
         print(knnScore(model, set_vars_expl, var_obj, i))
-    print(model.score(set_vars_expl, var_obj))

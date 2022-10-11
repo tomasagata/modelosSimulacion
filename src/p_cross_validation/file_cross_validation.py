@@ -13,7 +13,7 @@ def factorize(dataframe, var_name_arr):
     return new_df
 
 def k_cross_validation_score(X: pd.DataFrame, y: pd.Series, k = 5, threshold = 0.5):
-    errors = []
+    scores = []
     for test_segment in range(k):
         _range_start = int(np.floor((test_segment/k) * len(X)))
         _range_end = int(np.floor(((test_segment+1)/k) * len(X)))
@@ -21,8 +21,8 @@ def k_cross_validation_score(X: pd.DataFrame, y: pd.Series, k = 5, threshold = 0
         train_y = list(y.drop(np.arange(_range_start, _range_end), axis=0))
 
         model_k = LogisticRegression().fit(train_X, train_y)
-        errors.append(logistic_regression_score(model_k, train_X, train_y, threshold))
-    return np.mean(errors)
+        scores.append(logistic_regression_score(model_k, train_X, train_y, threshold))
+    return np.mean(scores)
 
 def logistic_regression_score(model, X, y, threshold = 0.5):
     y_proba = model.predict_proba(X)
@@ -73,7 +73,7 @@ def logistic_regression_mse(model, X, y, threshold = 0.5):
     return (np.square(predicted - y)).mean()
 
 if __name__ == '__main__':
-    df = pd.read_csv(r'C:\Users\tomas\Desktop\modelosSimulacion\data\Churn_Modelling.csv')
+    df = pd.read_csv(r'/Users/kpapiccio/PycharmProjects/modelosSimulacion/data/Churn_Modelling.csv')
     df = df.drop(['RowNumber','CustomerId','Surname'], axis=1)
     set_vars_expl = df.drop(['Exited'], axis=1)
     set_vars_expl = factorize(set_vars_expl, ['Geography', 'Gender'])
